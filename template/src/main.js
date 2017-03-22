@@ -11,14 +11,11 @@ import Head from 'vue-head'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/router}}
 
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-
-// plugins
 {{#router}}
+// plugins
 Vue.use(Router)
 Vue.use(Head)
-{{/router}}
 
-{{#router}}
 // router options
 const router = new Router({
     scrollBehavior: () => ({ y: 0 }),
