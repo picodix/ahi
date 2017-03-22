@@ -5,10 +5,29 @@
 import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#router}}
-import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import routes from './routes'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Head from 'vue-head'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/router}}
 
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+// plugins
+{{#router}}
+Vue.use(Router)
+Vue.use(Head)
+{{/router}}
+
+{{#router}}
+// router options
+const router = new Router({
+    scrollBehavior: () => ({ y: 0 }),
+    mode: 'hash',
+    base: process.env.ROOT_URL,
+    linkActiveClass: 'on',
+    routes
+})
+{{/router}}
 
 /* eslint-disable no-new */
 new Vue({
