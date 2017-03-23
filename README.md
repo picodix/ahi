@@ -1,4 +1,6 @@
-# vue-webpack-boilerplate
+![logo](template/src/assets/logo.png?raw=true)
+
+# ahi
 
 > A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.
 
