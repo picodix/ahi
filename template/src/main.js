@@ -4,6 +4,7 @@
 {{/if_eq}}
 import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import EventHub from '@/core/emitter'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#router}}
 import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import routes from './routes'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
@@ -35,6 +36,15 @@ const router = new Router({
 sync(store, router)
 {{/vuex}}
 {{/router}}
+
+// Expose a getter for $bus
+Object.defineProperties(Vue.prototype, {
+    $bus: {
+        get: function () {
+            return EventHub
+        }
+    }
+})
 
 /* eslint-disable no-new */
 new Vue({
