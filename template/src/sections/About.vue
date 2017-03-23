@@ -9,6 +9,14 @@
     export default {
         name: 'about',
 
+        head: {
+            title: {
+                inner: 'About',
+                separator: ' ',
+                complement: ' '
+            }
+        },
+
         props: {
         },
 

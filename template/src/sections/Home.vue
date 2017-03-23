@@ -9,6 +9,14 @@
     export default {
         name: 'home',
 
+        head: {
+            title: {
+                inner: 'Home',
+                separator: ' ',
+                complement: ' '
+            }
+        },
+
         props: {
         },
 
