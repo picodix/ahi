@@ -1,8 +1,8 @@
 {
-  "name": "vue-cli-template-webpack",
-  "version": "2.0.0",
+  "name": "ahi",
+  "version": "0.0.5",
   "license": "MIT",
-  "description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.",
+  "description": "Ahi is an opinionated-featured VueJS 2.0 setup for Webpack",
   "scripts": {
     "docs": "cd docs && gitbook serve",
     "docs:deploy": "bash ./deploy-docs.sh"
