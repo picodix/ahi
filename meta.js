@@ -48,6 +48,10 @@ module.exports = {
             "type": "confirm",
             "message": "Do you need Vuex?"
         },
+        "svg": {
+            "type": "confirm",
+            "message": "Do you need support for SVG sprites?"
+        },
         "lint": {
             "type": "confirm",
             "message": "Use ESLint to lint your code?"
@@ -92,7 +96,10 @@ module.exports = {
         "test/e2e/**/*": "e2e",
         "src/routes/**/*": "router",
         "src/sections/**/*": "router",
-        "src/vuex/**/*": "vuex"
+        "src/vuex/**/*": "vuex",
+        "src/assets/svg/**/*": "svg",
+        "src/components/Icon/**/*": "svg",
+        "build/utils/sprite.js": "svg"
     },
     "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

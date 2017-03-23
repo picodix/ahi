@@ -24,8 +24,11 @@ module.exports = {
             {{#if_eq build "standalone"}}
             'vue$': 'vue/dist/vue.esm.js',
             {{/if_eq}}
+            {{#if svg}}
+            'utils': path.resolve(__dirname, './utils'),
+            {{/if}}
             'styles': resolve('src/styles'),
-            '@': resolve('src'),
+            '@': resolve('src')
         }
     },
     module: {
@@ -51,8 +54,22 @@ module.exports = {
                 loader: 'babel-loader',
                 include: [resolve('src'), resolve('test')]
             },
+            {{#if svg}}
             {
+                test: /\.svg(\?.*)?$/,
+                loader: 'svg-sprite-loader?' + JSON.stringify({
+                    name: '[name]_[hash]',
+                    spriteModule: 'utils/sprite',
+                    prefixize: true
+                })
+            },
+            {{/if}}
+            {
+                {{#if svg}}
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
+                {{else}}
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                {{/if}}
                 loader: 'url-loader',
                 query: {
                     limit: 10000,

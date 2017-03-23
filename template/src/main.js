@@ -10,10 +10,13 @@ import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import routes from './routes'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import Head from 'vue-head'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#vuex}}
-import { sync } from 'vuex-router-sync'
-import store from '@/vuex/store'
+import { sync } from 'vuex-router-sync'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import store from '@/vuex/store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
 {{/router}}
+{{#svg}}
+import Icon from '@/components/Icon'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{/svg}}
 
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#router}}
@@ -36,12 +39,16 @@ const router = new Router({
 sync(store, router)
 {{/vuex}}
 {{/router}}
+{{#svg}}
+// icon component
+Vue.component('icon', Icon){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{/svg}}
 
 // Expose a getter for $bus
 Object.defineProperties(Vue.prototype, {
     $bus: {
         get: function () {
-            return EventHub
+            return EventHub{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
         }
     }
 })

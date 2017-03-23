@@ -1,6 +1,11 @@
 <template>
     <div id="app">
+        {{#if svg}}
+        <icon name="logo"></icon>
+        {{else}}
         <img src="./assets/logo.png">
+        {{/if}}
+
         {{#router}}
         <router-view></router-view>
         {{else}}
@@ -17,8 +22,8 @@ import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#vuex}}
 
 // vuex
-import store from '@/vuex/store'
-import debounce from 'lodash/debounce'
+import store from '@/vuex/store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import debounce from 'lodash/debounce'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{/vuex}}
 export default {
@@ -36,9 +41,9 @@ export default {
         }
     },
     created: function () {
-        this.save()
-        this.resize = debounce(this.save, 500)
-        window.addEventListener('resize', this.resize, false)
+        this.save(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        this.resize = debounce(this.save, 500){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        window.addEventListener('resize', this.resize, false){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     },
     store{{/vuex}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
