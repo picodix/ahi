@@ -14,11 +14,33 @@
 import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{/unless}}
+{{#vuex}}
+
+// vuex
+import store from '@/vuex/store'
+import debounce from 'lodash/debounce'
+
+{{/vuex}}
 export default {
     name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
     components: {
         Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}{{#vuex}},
+    methods: {
+        save: function () {
+            this.$bus.$emit('app:resize')
+            this.$store.dispatch('saveSize', {
+                width: window.innerWidth,
+                height: window.innerHeight
+            })
+        }
+    },
+    created: function () {
+        this.save()
+        this.resize = debounce(this.save, 500)
+        window.addEventListener('resize', this.resize, false)
+    },
+    store{{/vuex}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
