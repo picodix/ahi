@@ -44,6 +44,10 @@ module.exports = {
             "type": "confirm",
             "message": "Install vue-router?"
         },
+        "vuex": {
+            "type": "confirm",
+            "message": "Do you need Vuex?"
+        },
         "lint": {
             "type": "confirm",
             "message": "Use ESLint to lint your code?"
@@ -87,7 +91,8 @@ module.exports = {
         "build/webpack.test.conf.js": "unit",
         "test/e2e/**/*": "e2e",
         "src/routes/**/*": "router",
-        "src/sections/**/*": "router"
+        "src/sections/**/*": "router",
+        "src/vuex/**/*": "vuex"
     },
     "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

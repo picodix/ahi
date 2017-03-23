@@ -8,10 +8,15 @@ import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import routes from './routes'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import Head from 'vue-head'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+{{#vuex}}
+import { sync } from 'vuex-router-sync'
+import store from '@/vuex/store'
+{{/vuex}}
 {{/router}}
 
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#router}}
+
 // plugins
 Vue.use(Router)
 Vue.use(Head)
@@ -24,6 +29,11 @@ const router = new Router({
     linkActiveClass: 'on',
     routes
 })
+{{#vuex}}
+
+// sync router
+sync(store, router)
+{{/vuex}}
 {{/router}}
 
 /* eslint-disable no-new */
