@@ -24,6 +24,11 @@ module.exports = {
             "type": "string",
             "message": "Author"
         },
+        "url": {
+            "type": "string",
+            "required": false,
+            "message": "URL"
+        },
         "build": {
             "type": "list",
             "message": "Vue build",
@@ -51,6 +56,10 @@ module.exports = {
         "svg": {
             "type": "confirm",
             "message": "Do you need support for SVG sprites?"
+        },
+        "docs": {
+            "type": "confirm",
+            "message": "Do you need to generate a documentation for this project (based on Docute)?"
         },
         "lint": {
             "type": "confirm",
@@ -99,7 +108,9 @@ module.exports = {
         "src/vuex/**/*": "vuex",
         "src/assets/svg/**/*": "svg",
         "src/components/Icon/**/*": "svg",
-        "build/utils/sprite.js": "svg"
+        "build/utils/sprite.js": "svg",
+        "docs/**/*": "docs",
+        "build/utils/docs.js": "docs"
     },
     "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

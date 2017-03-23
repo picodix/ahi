@@ -14,6 +14,12 @@ var webpackConfig = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
 ? require('./webpack.prod.conf')
 : {{/if_or}}require('./webpack.dev.conf')
 
+{{#docs}}
+// if doc is needed import required dependencies
+var watch = require('node-watch')
+var doc = require('./utils/docs')
+{{/docs}}
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -27,7 +33,11 @@ var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    quiet: true
+    quiet: true,
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    }
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
@@ -67,8 +77,26 @@ app.use(staticPath, express.static('./static'))
 var uri = 'http://localhost:' + port
 
 devMiddleware.waitUntilValid(function () {
+    {{#docs}}
+    // on first bundle generate the doc
+    doc.generate()
+    {{/docs}}
     console.log('> Listening at ' + uri + '\n')
 })
+
+{{#docs}}
+// little helper to filter
+function filter(pattern, fn) {
+    return function(evt, name) {
+        if (pattern.test(name)) {
+            fn.apply(null, arguments);
+        }
+    }
+}
+// watch recursively in the components folder and regenerate the doc everytime
+// a markdown file is updated
+watch('./src/components', { recursive: true }, filter(/\.md$/, doc.generate))
+{{/docs}}
 
 module.exports = app.listen(port, function (err) {
     if (err) {
