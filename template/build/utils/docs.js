@@ -47,14 +47,17 @@ var readAvailableComponents = function () {
     for (var i = 0; i < directories.length; i++) {
         var component = `${base}/${directories[i]}`
 
-        if(fs.existsSync(`${component}/README.md`)) {
+        if(fs.existsSync(`${component}/README.md`) && !fs.existsSync(`${component}/.docignore`)) {
             template += `## ${capitalize(directories[i])} \n\n`
             template += readFile(`${component}/README.md`)
-            template += '\n\n'
-            template += `\`\`\`\`${directories[i]}.vue\n`
-            template += readFile(`${component}/index.vue`)
-            template += '````'
-            template += '\n\n'
+            if(!fs.existsSync(`${component}/.demoignore`))
+            {
+                template += '\n\n'
+                template += `\`\`\`\`${directories[i]}.vue\n`
+                template += readFile(`${component}/index.vue`)
+                template += '````'
+                template += '\n\n'
+            }
         }
     }
 
