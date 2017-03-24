@@ -45,11 +45,15 @@ var readAvailableComponents = function () {
     let template = ''
 
     for (var i = 0; i < directories.length; i++) {
-        var component = `${base}/${directories[i]}/README.md`
+        var component = `${base}/${directories[i]}`
 
-        if(fs.existsSync(component)) {
+        if(fs.existsSync(`${component}/README.md`)) {
             template += `## ${capitalize(directories[i])} \n\n`
-            template += readFile(component)
+            template += readFile(`${component}/README.md`)
+            template += '\n\n'
+            template += `\`\`\`\`${directories[i]}.vue\n`
+            template += readFile(`${component}/index.vue`)
+            template += '````'
             template += '\n\n'
         }
     }
