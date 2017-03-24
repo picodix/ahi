@@ -1,3 +1,5 @@
+![logo](template/src/assets/logo.png?raw=true)
+
 # Introduction
 
 This boilerplate is targeted towards large, serious projects and assumes you are somewhat familiar with Webpack and `vue-loader`. Make sure to also read [`vue-loader`'s documentation](http://vuejs.github.io/vue-loader/index.html) for common workflow recipes.
